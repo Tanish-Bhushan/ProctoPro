@@ -1,9 +1,24 @@
-import tkinter as tk
+import threading
+import time
 
-root = tk.Tk()
+def function1():
+    while True:
+        print("Function 1")
+        
 
-# Create a Label with left-aligned text using anchor
-label_left = tk.Label(root, text="Left Aligned", anchor="w",width=100)
-label_left.pack()
+def function2():
+    while True:
+        print("Function 2")
+        
 
-root.mainloop()
+# Create threads for each function
+thread1 = threading.Thread(target=function1)
+thread2 = threading.Thread(target=function2)
+
+# Start the threads
+thread1.start()
+thread2.start()
+
+# Keep the main thread running
+while True:
+    pass
