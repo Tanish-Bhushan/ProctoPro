@@ -1,9 +1,9 @@
 {
     "question": [
-      "Q1. What Indian city is the capital of two states?",
-      "Q2. Which city is the capital of India?",
-      "Q3. Smallest State of India?",
-      "Q4. Where is Taj Mahal Located?"
+      "Q1. ‘Starlink’ is a satellite internet constellation designed and manufactured by which company?",
+      "Q2. Scientists from which country has developed a new technology to filter micro-plastics from water?",
+      "Q3. Which institution recently developed macro/microporous ionic organic material to remove pollutants from water?",
+      "Q4. The eXperiential Technology Innovation Centre (XTIC) is a newly established research institute in which institution?"
     ],
     "answer": [
       1,
@@ -13,25 +13,29 @@
     ],
     "options": [
   
-      ["Chandigarh",
-        "Kolkata",
-        "Delhi",
-        "Bangalore"
+      [
+      "Amazon",
+      "SpaceX",
+      "Blue Origin",
+      "Apple"
       ],
-      ["Jaipur",
-        "Delhi",
-        "Chennai",
-        "Mumbai"
+      [
+      "India",
+      "South Korea",
+      "Australia",
+      "UAE"
       ],
-      ["Rajasthan",
-        "Punjab",
-        "Goa",
-        "Bihar"
+      [
+      "IIIT Hyderabad",
+      "IISc Bengaluru",
+      "IISER Pune",
+      "IIT Madras"
       ],
-      ["Lucknow",
-        "Agra",
-        "Bhopal",
-        "Delhi"
+      [
+      "IISc Bengaluru",
+      "IISER Bhopal",
+      "IIT Madras",
+      "NIT Warangal"
       ]
     ]
   }

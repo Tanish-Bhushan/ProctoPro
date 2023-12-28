@@ -3,34 +3,29 @@ from tkinter import messagebox
 from face_Detection import fd
 import re
 import threading
-import json
+from quiz import runQuiz
 import time
 
 regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
 f = open('data.json')
 
 def enableIt():
-      agree['state']=NORMAL
+      test_start['state']=NORMAL
       
 def dest():
       splash_root.destroy()
       
 splash_root = Tk()#splash screen
-splash_root.geometry("640x420")
-splash_label = Label(splash_root, text="ProctoPro", font=18)
-splash_label.pack()
-rules=open("rules&guidelines.txt",'r')
-text=rules.read()
-rules.close()
-Label(splash_root, text=text,anchor="w", justify="left",pady=10,font=('Helvetica',12)).pack()
-Radiobutton(splash_root, text="I agree", value=1,command=enableIt).pack()
-agree=Button(splash_root, text='I Agree', fg='black', bg='white',state=DISABLED,command=dest)
-agree.pack()
+splash_root.attributes('-fullscreen', True)
+Label(splash_root, text="ProctoPro",font=("Arial", 25) ).place(x=550,y=300)
+Label(splash_root, text="Exams simplified",font=("Arial", 10),fg="gray" ).place(x=650,y=350)
+Button(splash_root, text='Proceed to Enter Details', fg='black', bg='white',command=dest).place(x=560,y=400)
+
 
 gui = Tk()#main window 
 gui.configure() 
 gui.title("ProctoPro") 
-gui.geometry("640x420") 
+gui.attributes('-fullscreen', True)
 okvar=IntVar(gui)
 
 def all_children (window) :
@@ -43,53 +38,14 @@ def all_children (window) :
     return _list
 
 
-def set_ques():
-	okvar.set(1)
-	
-def nfun():
-	data = json.load(f)
-	Label(gui,text="Quiz").pack()
-	ques=Label(gui)
-	ques.pack()
-	v1=IntVar(gui,value=0)
-	v2=IntVar(gui,value=0)
-	v3=IntVar(gui,value=0)
-	v4=IntVar(gui,value=0)
-	
-	opt1=Radiobutton(gui,variable = v1)
-	opt1.pack()
-	opt2=Radiobutton(gui,variable = v2)
-	opt2.pack()
-	opt3=Radiobutton(gui,variable = v3)
-	opt3.pack()
-	opt4=Radiobutton(gui,variable = v4)
-	opt4.pack()
-	Button(gui, text='Next', fg='black', bg='white',command=set_ques, height=1, width=7).pack()
-
-	
-
-	for qno in range(4):
-		ques['text']=data['question'][qno]
-		opt1['text']=data['options'][qno][0]
-		opt2['text']=data['options'][qno][1]
-		opt3['text']=data['options'][qno][2]
-		opt4['text']=data['options'][qno][3]
-		
-		
-		gui.wait_variable(okvar)
-		okvar.set(0)
-	messagebox.showinfo("Test End",("Test Completed!"))
-	f.close()
-	gui.destroy()
-	
-
 def start_test():
 	test_start.destroy()
 	thread1 = threading.Thread(target=fd)
-	thread2 = threading.Thread(target=nfun)
+	thread2 = threading.Thread(target=runQuiz)
 	thread1.start()
 	time.sleep(5)
 	thread2.start()
+	gui.destroy()
 	
       
 def equalpress(): 
@@ -109,18 +65,26 @@ def equalpress():
 	for item in widget_list:
 		item.destroy()
             
-	Label(gui,text="Welcome "+n).pack()
+	Label(gui,text="You are ready to Proceed for the test",font=("Arial", 15),background="green" ).place(x=500,y=100)
 	global test_start
-	test_start=Button(gui, text='Start Test', fg='black', bg='white',command=start_test, height=1, width=7)
-	test_start.place(x=280,y=230)
-	
-Label(gui,text="Enter your name:").place(x=20,y=150) #start details 
+	rules=open("rules&guidelines.txt",'r')
+	text=rules.read()
+	rules.close()
+	Label(gui, text="Rule to follow during the exam:",anchor="w", justify="left",pady=10,font=("Arial", 15) ).place(x=400,y=200)
+	Label(gui, text=text,anchor="w", justify="left",pady=10,font=("Arial", 12) ).place(x=400,y=250)
+	Radiobutton(gui, text="I agree", value=1,command=enableIt).place(x=600,y=500)
+	test_start=Button(gui, text='Start Test', fg='black', bg='white',state='disabled',command=start_test, height=1, width=7)
+	test_start.place(x=600,y=530)
+      
+
+Label(gui,text="SignUp to start the Test",font=("Arial", 20) ).place(x=500,y=150) 
+Label(gui,text="Enter your name:").place(x=400,y=250) #start details 
 name = Text(gui, height = 1, width = 50)
-name.place(x=150,y=150)
-Label(gui,text="Enter your Email:").place(x=20,y=190) 
+name.place(x=510,y=250)
+Label(gui,text="Enter your Email:").place(x=400,y=300) 
 email = Text(gui, height = 1, width = 50)
-email.place(x=150,y=190)
-Button(gui, text='Submit', fg='black', bg='white',command=equalpress, height=1, width=7).place(x=280,y=230)
+email.place(x=510,y=300)
+Button(gui, text='Submit details', fg='black', bg='white',command=equalpress, height=1, width=15,background="blue",foreground="white",font=("Arial",12)).place(x=600,y=350)
 
 # quiz = Quiz()
 gui.mainloop() 
