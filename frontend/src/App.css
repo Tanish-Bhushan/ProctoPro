@@ -1,0 +1,26 @@
+.anim {
+  
+  animation: typewriter 2s steps(20) ,
+    blink 700ms steps(20) infinite normal;
+  border-right: 3px solid white;
+}
+
+@keyframes typewriter {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 40%;
+  }
+}
+
+@keyframes blink {
+  from {
+    border-color: white;
+  }
+
+  to {
+    border-color: transparent;
+  }
+}
