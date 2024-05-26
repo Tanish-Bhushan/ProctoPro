@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Timer } from "./timer";
 import { Question } from "./questions";
 
+
 export const ExamStart = ({ questions }) => {
   const navigate = useNavigate();
 
@@ -11,6 +12,7 @@ export const ExamStart = ({ questions }) => {
     alert("Exam Submitted");
     navigate("/");
   };
+
   return (
     <div className="flex">
       <div>
@@ -21,7 +23,7 @@ export const ExamStart = ({ questions }) => {
         </div>
         <div className="flex justify-center items-center">
           <button
-            className=" border p-2 rounded-md bg-green-500"
+            className=" border p-2 rounded-md bg-green-500 m-2"
             onClick={handleSubmit}
           >
             Submit Exam

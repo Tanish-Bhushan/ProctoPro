@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export const Question = ({question}) => {
-    const [selectedValue, setSelectedValue] = useState(1);
+    const [selectedValue, setSelectedValue] = useState(0);
   const handleRadioChange = (value) => {
     setSelectedValue(value);
   };

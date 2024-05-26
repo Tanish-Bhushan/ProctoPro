@@ -4,6 +4,7 @@ import * as tf from "@tensorflow/tfjs";
 import draw from "./utilities";
 import { Timer } from "./components/timer";
 
+
 export const Camera = () => {
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
@@ -43,6 +44,7 @@ export const Camera = () => {
       const prediction = await model.estimateFaces(video, returnTensors);
 
       if (prediction.length === 0) alert("No face detected");
+      if (prediction.length >= 2) alert("Multiple faces detected");
 
       const ctx = canvasRef.current.getContext("2d");
       draw(prediction, ctx);
